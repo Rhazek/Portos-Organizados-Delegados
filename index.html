@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório dos Portos Organizados Delegados brasileiros</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Relatório dos Portos Organizados Delegados brasileiros</h1>
+    </header>
+    
+    <section>
+    <div>
+      <label for="opcoes">Selecione uma pesquisa:</label>
+      <select id="opcoes">
+        <option value="selecione">Selecione</option>
+        <option value="info">Pesquisar por nome do porto</option>
+        <option value="regiao">Pesquisar por região</option>
+        <option value="tipo">Pesquisar por tipo de porto</option>
+      </select>
+    </div>
+
+    <div id="pesquisa">
+      <input
+        type="text"
+        id="campoDePesquisa"
+        placeholder="Selecione uma opção primeiro"
+      />
+    </div>
+
+
+    <div>
+      <button class="btn first" id="botaoPesquisar">Pesquisar</button>
+    </div>
+
+    <div id="resultado"></div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
