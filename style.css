@@ -2,7 +2,6 @@
 
 body {
   background-color: #2088e9;
-  font-family: Arial, sans-serif;
   padding: 20px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
@@ -10,19 +9,16 @@ body {
 
 #campoDePesquisa {
   text-align: center;
+  width: 100%;
   padding: 16px;
-  width: 16px;
-  margin: 0 auto;
+  margin: 16px 0;
   border: 0;
-  outline: 0;
   font-size: 16px;
   border-radius: 16px*20;
-  padding: 16px;
   background-color: #EBECF0;
   text-shadow: 1px 1px 0 #fff;
   display: block;
   box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #fff;
-  width: 100%;
   box-sizing: border-box;
 }
 
@@ -35,16 +31,19 @@ section {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.596);
 }
 
-/* Define o estilo do título */
 h1 {
   color: #ffffff;
   text-align: center;
   font-size: 35px;
   margin-bottom: 20px;
   -webkit-text-stroke-width: 2px;
-  /* largura da borda */
   -webkit-text-stroke-color: rgb(32, 32, 32);
-  /* cor da borda */
+}
+
+#resultado {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 /* Define o estilo do select */
@@ -58,17 +57,10 @@ select {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Define o estilo da opção "Todos os estados" */
-option[value="0"] {
+#opcoes option:first-child {
   font-weight: bold;
 }
 
-/* Define o estilo do parágrafo da porcentagem */
-#porcentagem {
-  font-size: 16px;
-  text-align: center;
-  margin-bottom: 20px;
-}
 
 /* Define o estilo da imagem da bandeira */
 #bandeira {
@@ -121,8 +113,4 @@ option[value="0"] {
 
 .first:hover {
   box-shadow: 0 0 40px 40px #3498db inset;
-}
-
-#opcoes option:first-child {
-  font-weight: bold;
 }

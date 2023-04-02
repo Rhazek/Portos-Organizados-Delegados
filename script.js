@@ -1,5 +1,6 @@
 const portos = [
   { nome: 'Macapá', estado: 'Amapá', autoridade: 'CDSA', tipo: 'Marítimo', regiao: 'Norte' },
+  { nome: 'Manaus', estado: 'Amazonas', autoridade: 'SNPH', tipo: 'Marítimo', regiao: 'Norte' },
   { nome: 'Itaqui', estado: 'Maranhão', autoridade: 'EMAP', tipo: 'Marítimo', regiao: 'Nordeste' },
   { nome: 'Cabedelo', estado: 'Paraíba', autoridade: 'DOCAS-PB', tipo: 'Marítimo', regiao: 'Nordeste' },
   { nome: 'Recife', estado: 'Pernambuco', autoridade: 'PORTO DO RECIFE S.A', tipo: 'Marítimo', regiao: 'Nordeste' },
@@ -16,7 +17,6 @@ const portos = [
   { nome: 'Porto Alegre', estado: 'Rio Grande do Sul', autoridade: 'PORTO RS', tipo: 'Marítimo', regiao: 'Sul' },
   { nome: 'Rio Grande', estado: 'Rio Grande do Sul', autoridade: 'PORTO RS', tipo: 'Marítimo', regiao: 'Sul' },
   { nome: 'Porto Velho', estado: 'Rondônia', autoridade: 'SOPH-RO', tipo: 'Fluvial', regiao: 'Norte' },
-  { nome: 'Manaus', estado: 'Amazonas', autoridade: 'SNPH', tipo: 'Marítimo', regiao: 'Norte' },
 ];
 
 const opcoes = document.getElementById("opcoes");
@@ -24,46 +24,46 @@ const pesquisa = document.getElementById("pesquisa");
 const campoDePesquisa = document.getElementById("campoDePesquisa");
 const botaoPesquisar = document.getElementById("botaoPesquisar");
 const resultado = document.getElementById("resultado");
+const bandeira = document.getElementById("bandeira");
 
 opcoes.addEventListener("change", () => {
   const valorSelecionado = opcoes.value;
   campoDePesquisa.value = ""
+  resultado.innerHTML = "";
 
-  if (valorSelecionado === "info") {
+  if (valorSelecionado == "info") {
     campoDePesquisa.placeholder = "Digite o nome do porto";
-  } else if (valorSelecionado === "regiao") {
+  } else if (valorSelecionado == "regiao") {
     campoDePesquisa.placeholder = "Digite a região a ser pesquisada";
-  } else if (valorSelecionado === "tipo") {
+  } else if (valorSelecionado == "tipo") {
     campoDePesquisa.placeholder = "Digite o tipo de porto (marítimo/fluvial)";
   } else {
     campoDePesquisa.placeholder = "Selecione uma opção";
   }
-  // Exibe o campo de entrada de texto
-  pesquisa.style.display = "block";
 });
 
 botaoPesquisar.addEventListener("click", () => {
   const valorSelecionado = opcoes.value;
 
-  if (valorSelecionado === "info") {
-    const nomeDoPorto = campoDePesquisa.value.trim();
+  if (valorSelecionado == "info") {
+    const nomeDoPorto = campoDePesquisa.value;
     const resultadoDaPesquisa = pesquisarPorto(nomeDoPorto);
     resultado.innerHTML = resultadoDaPesquisa;
   }
 
-  if(valorSelecionado === "regiao") {
-    const regiao = campoDePesquisa.value.trim();
+  if(valorSelecionado == "regiao") {
+    const regiao = campoDePesquisa.value;
     const resultadoDaPesquisa = pesquisarRegiao(regiao);
     resultado.innerHTML = resultadoDaPesquisa;
   }
 
-  if(valorSelecionado === "tipo") {
-    const tipo = campoDePesquisa.value.trim();
+  if(valorSelecionado == "tipo") {
+    const tipo = campoDePesquisa.value;
     const resultadoDaPesquisa = pesquisarTipo(tipo);
     resultado.innerHTML = resultadoDaPesquisa;
   }
 
-  if(valorSelecionado === "selecione") {
+  if(valorSelecionado == "selecione") {
     resultado.innerHTML = "Você deve selecionar uma opção primeiro.";
   }
 
@@ -74,12 +74,13 @@ function pesquisarPorto(nome) {
   let resultado = "";
 
   for (let i = 0; i < portos.length; i++) {
-    if (portos[i].nome.toLowerCase() === nome) {
-      resultado = `<h3>PORTO ${(portos[i].nome).toUpperCase()}</h3> <br>Estado: ${portos[i].estado} <br>Autoridade portuária: ${portos[i].autoridade} <br>Tipo: ${portos[i].tipo}`;
+    if (portos[i].nome.toLowerCase() == nome) {
+      resultado = `<h3>PORTO ${(portos[i].nome).toUpperCase()}</h3> Estado: ${portos[i].estado} 
+      <br>Autoridade portuária: ${portos[i].autoridade} <br>Tipo: ${portos[i].tipo}`;
     }
   }
 
-  if (resultado === "") {
+  if (resultado == "") {
     return "Porto não encontrado.";
   } 
 
@@ -91,48 +92,53 @@ function pesquisarRegiao(regiao) {
 
   let resultado = "";
 
-  if(regiao === "n") {
+  if(regiao == "n") {
     regiao = "norte";
-  } else if(regiao === "s") {
+  } else if(regiao == "s") {
     regiao = "sul"; 
-  } else if(regiao === "ne") {
+  } else if(regiao == "ne") {
     regiao = "nordeste";
-  } else if(regiao === "se") {
+  } else if(regiao == "se") {
     regiao = "sudeste";
-  } else if (regiao === "centro-oeste" || regiao === "co" || regiao === "centro oeste") {
+  } else if (regiao == "centro-oeste" || regiao == "co" || regiao == "centro oeste") {
+    regiao = "centro-oeste";
     resultado = "A região Centro-Oeste não possui Portos Organizados Delegados.";
   }
 
+  let titulo = `<h3>REGIÃO ${(regiao).toUpperCase()}</h3>`;
+
   for (let i = 0; i < portos.length; i++) {
-    if (portos[i].regiao.toLowerCase() === regiao) {
+    if (portos[i].regiao.toLowerCase() == regiao) {
       resultado += `${portos[i].nome} - ${portos[i].estado}<br>`;
     }
   }
 
-  if (resultado === "") {
+  if (resultado == "") {
     return "Região não encontrada.";
   } 
 
-  return resultado;
+  return titulo + resultado;
 }
 
 function pesquisarTipo(tipo) {
   tipo = tipo.toLowerCase();
   let resultado = "";
 
-  if(tipo === "maritimo") {
+  if(tipo == "maritimo") {
     tipo = "marítimo";
   }
 
+  let titulo = `<h3>LISTA DE PORTOS DO TIPO ${(tipo).toUpperCase()}</h3>`;
+
   for (let i = 0; i < portos.length; i++) {
-    if (portos[i].tipo.toLowerCase() === tipo) {
+    if (portos[i].tipo.toLowerCase() == tipo) {
       resultado += `${portos[i].nome} - ${portos[i].regiao}<br>`;
     }
   }
 
-  if (resultado === "") {
+  if (resultado == "") {
     return "Tipo não encontrado.";
   } 
 
-  return resultado;
+  return titulo + resultado;
 }
