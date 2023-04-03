@@ -46,19 +46,19 @@ botaoPesquisar.addEventListener("click", () => {
   const valorSelecionado = opcoes.value;
 
   if (valorSelecionado == "info") {
-    const nomeDoPorto = campoDePesquisa.value;
+    const nomeDoPorto = campoDePesquisa.value.trim();
     const resultadoDaPesquisa = pesquisarPorto(nomeDoPorto);
     resultado.innerHTML = resultadoDaPesquisa;
   }
 
   if(valorSelecionado == "regiao") {
-    const regiao = campoDePesquisa.value;
+    const regiao = campoDePesquisa.value.trim();
     const resultadoDaPesquisa = pesquisarRegiao(regiao);
     resultado.innerHTML = resultadoDaPesquisa;
   }
 
   if(valorSelecionado == "tipo") {
-    const tipo = campoDePesquisa.value;
+    const tipo = campoDePesquisa.value.trim();
     const resultadoDaPesquisa = pesquisarTipo(tipo);
     resultado.innerHTML = resultadoDaPesquisa;
   }
