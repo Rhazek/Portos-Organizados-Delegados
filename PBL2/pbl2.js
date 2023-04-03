@@ -28,7 +28,7 @@ const bandeira = document.getElementById("bandeira");
 
 opcoes.addEventListener("change", () => {
   const valorSelecionado = opcoes.value;
-  campoDePesquisa.value = ""
+  campoDePesquisa.value = "";
   resultado.innerHTML = "";
 
   if (valorSelecionado == "info") {
