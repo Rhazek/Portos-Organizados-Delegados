@@ -114,3 +114,27 @@ select {
 .first:hover {
   box-shadow: 0 0 40px 40px #3498db inset;
 }
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  section {
+    width: 90%;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  #campoDePesquisa {
+    border-radius: 10px;
+  }
+
+  #bandeira {
+    width: 200px;
+    height: 130px;
+  }
+}
