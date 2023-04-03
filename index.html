@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Relatório dos Portos Organizados Delegados brasileiros</title>
+    <title>Portifólio</title>
   </head>
 
   <body>
+
     <header>
-      <h1>Relatório dos Portos Organizados Delegados brasileiros</h1>
+      <h1>Portifólio dos projetos PBL - Algoritmos</h1>
     </header>
-    
+
     <section>
-    <div>
-      <label for="opcoes">Selecione uma pesquisa:</label>
-      <select id="opcoes">
-        <option value="selecione">Selecione</option>
-        <option value="info">Pesquisar por nome do porto</option>
-        <option value="regiao">Pesquisar por região</option>
-        <option value="tipo">Pesquisar por tipo de porto</option>
-      </select>
-    </div>
 
-    <div id="pesquisa">
-      <input
-        type="text"
-        id="campoDePesquisa"
-        placeholder="Selecione uma opção primeiro"
-      />
-    </div>
+        <h2>Selecione qual Projeto PBL você deseja acessar</h2>
 
-    <div>
-      <button class="btn first" id="botaoPesquisar">Pesquisar</button>
-    </div>
+      <div>
+        <button class="btn first" id="but1">PBL 1</button>
+      </div>
 
-    <div id="resultado"></div>
+      <hr size="4" style="background-color: rgb(19, 18, 18); border-width: 0" />
 
-    <div id="bandeira-container">
-      <img id="bandeira" src="BR.png">
-    </div>    
+      <div>
+        <button class="btn first" id="but2">PBL 2</button>
+      </div>
     </section>
 
-    <script src="script.js"></script>
+    <img id="porto" src="porto.png" alt="">
+
+    <script>
+      document.getElementById("but1").addEventListener("click", function () {
+        window.location.href = "PBL1/pbl1.html";
+      });
+      document.getElementById("but2").addEventListener("click", function () {
+        window.location.href = "PBL2/pbl2.html";
+      });
+    </script>
+
   </body>
 </html>

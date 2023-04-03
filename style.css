@@ -7,21 +7,6 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-#campoDePesquisa {
-  text-align: center;
-  width: 100%;
-  padding: 16px;
-  margin: 16px 0;
-  border: 0;
-  font-size: 16px;
-  border-radius: 16px*20;
-  background-color: #EBECF0;
-  text-shadow: 1px 1px 0 #fff;
-  display: block;
-  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #fff;
-  box-sizing: border-box;
-}
-
 section {
   background-color: #e0dada;
   border-radius: 10px;
@@ -40,42 +25,8 @@ h1 {
   -webkit-text-stroke-color: rgb(32, 32, 32);
 }
 
-#resultado {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-/* Define o estilo do select */
-select {
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-top: 15px;
-  margin-bottom: 3px;
-  font-family: 'Poppins', sans-serif;
-}
-
-#opcoes option:first-child {
-  font-weight: bold;
-}
-
-
-/* Define o estilo da imagem da bandeira */
-#bandeira {
-  width: 270px;
-  height: 175px;
-  display: block;
-  margin: 0 auto;
-  border-radius: 5%;
-  box-shadow: 5px 5px 10px black;
-}
-
-/* Define o estilo do contêiner da bandeira */
-#bandeira-container {
-  text-align: center;
-  margin-bottom: 20px;
+h2 {
+ font-size: 20px;
 }
 
 .btn {
@@ -84,11 +35,11 @@ select {
   -moz-appearance: none;
   appearance: none;
   background-color: transparent;
-  border: 2px solid #3498db;
+  border: 3px solid #3498db;
   border-radius: 0.6em;
   color: #3498db;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1;
   margin: 10px;
@@ -98,6 +49,7 @@ select {
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+  width: 40%;
 }
 
 .btn:hover,
@@ -115,26 +67,11 @@ select {
   box-shadow: 0 0 40px 40px #3498db inset;
 }
 
-@media only screen and (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-
-  section {
-    width: 90%;
-    border-radius: 10px;
-  }
-
-  h1 {
-    font-size: 30px;
-  }
-
-  #campoDePesquisa {
-    border-radius: 10px;
-  }
-
-  #bandeira {
-    width: 200px;
-    height: 130px;
-  }
+#porto {
+    position: fixed;
+    bottom: -50px;
+    right: -50px;
+    width: 45%;
+    height: auto;
+    z-index: -100;
 }
