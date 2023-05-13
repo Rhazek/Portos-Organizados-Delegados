@@ -10,6 +10,8 @@ const estado = document.getElementById("estado");
 const editEstado = document.getElementById("editEstado");
 const tipoPorto = document.getElementById("tipoPorto");
 const editTipoPorto = document.getElementById("editTipoPorto");
+const fecharAddForm = document.getElementById("fecharAddForm");
+const fecharEditForm = document.getElementById("fecharEditForm");
 
 const listaDePortos = [];
 
@@ -17,6 +19,24 @@ const listaDePortos = [];
 addButton.addEventListener("click", function () {
   overlay.style.display = "block";
   addForm.style.display = "block";
+  estado.selectedIndex = 0;
+  tipoPorto.selectedIndex = 0;
+  nomePorto.value = "";
+});
+
+// Evento de clique no botão "Fechar" do formulário de adição
+fecharAddForm.addEventListener("click", function () {
+  overlay.style.display = "none";
+  addForm.style.display = "none";
+  editNomePorto.value = "";
+  editEstado.selectedIndex = 0;
+  editTipoPorto.selectedIndex = 0;
+});
+
+// Evento de clique no botão "Fechar" do formulário de edição
+fecharEditForm.addEventListener("click", function () {
+  overlay.style.display = "none";
+  editForm.style.display = "none";
 });
 
 // Evento de clique no botão "Adicionar"
@@ -37,19 +57,21 @@ submitButton.addEventListener("click", function () {
   const porto = {
     nome: nomePorto.value,
     estado: estado.value,
-    tipo: tipoPorto.value
+    tipo: tipoPorto.value,
   };
 
   const inputValue = porto.nome;
   if (inputValue) {
     let listItem = null;
-    const existingPorto = listaDePortos.find(p => p.nome === inputValue);
+    const existingPorto = listaDePortos.find((p) => p.nome === inputValue);
 
     if (existingPorto) {
       // Se já existe um porto com o mesmo nome, atualize suas informações
       existingPorto.estado = porto.estado;
       existingPorto.tipo = porto.tipo;
-      listItem = document.querySelector(`div[id="${listaDePortos.indexOf(existingPorto)}"] p`);
+      listItem = document.querySelector(
+        `div[id="${listaDePortos.indexOf(existingPorto)}"] p`
+      );
     } else {
       // Caso contrário, crie um novo elemento na lista
       listaDePortos.push(porto);
@@ -57,7 +79,8 @@ submitButton.addEventListener("click", function () {
       const portoDiv = document.createElement("div");
       portoDiv.id = listaDePortos.length - 1;
       portoDiv.innerHTML = `
-        <p>${porto.nome}</p>
+        <h5>Porto ${porto.nome} - ${porto.estado}</h5>
+        <p>Tipo: ${porto.tipo}</p>
         <span class="options">
           <i onClick="editTask(this)" class="fas fa-edit"></i>
           <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
@@ -119,8 +142,11 @@ let editTask = (element) => {
     porto.tipo = editTipoPorto.value;
 
     // Atualize o texto do elemento da lista visível com as novas informações
-    const listItem = document.querySelector(`div[id="${portoId}"] p`);
-    listItem.textContent = porto.nome;
+    const h5 = portoDiv.querySelector("h5");
+    const p = portoDiv.querySelector("p");
+    h5.textContent = `Porto ${porto.nome} - ${porto.estado}`;
+    p.textContent = `Tipo: ${porto.tipo}`;
+
     console.log(listaDePortos);
 
     // Limpe os campos do formulário e oculte o formulário de edição
@@ -130,4 +156,4 @@ let editTask = (element) => {
     overlay.style.display = "none";
     editForm.style.display = "none";
   };
-}
+};

@@ -14,93 +14,126 @@
     <h1>CRUD Portos Brasileiros</h1>
   </header>
   <section>
-    <button id="addButton">Add</button>
+    <div id="addButton">
+      <span>Adicionar Novo Porto</span>
+      <i class="fas fa-plus"></i>
+    </div>
     <div class="overlay"></div>
     <div id="addForm" class="add-form">
-      <h2>Adicionar Informações</h2>
-      <input type="text" id="nomePorto" placeholder="Digite as informações">
-      <select name="estado" id="estado">
-        <option value="" disabled selected>Selecione um estado</option>
-        <option value="AC">Acre</option>
-        <option value="AL">Alagoas</option>
-        <option value="AP">Amapá</option>
-        <option value="AM">Amazonas</option>
-        <option value="BA">Bahia</option>
-        <option value="CE">Ceará</option>
-        <option value="DF">Distrito Federal</option>
-        <option value="ES">Espírito Santo</option>
-        <option value="GO">Goiás</option>
-        <option value="MA">Maranhão</option>
-        <option value="MT">Mato Grosso</option>
-        <option value="MS">Mato Grosso do Sul</option>
-        <option value="MG">Minas Gerais</option>
-        <option value="PA">Pará</option>
-        <option value="PB">Paraíba</option>
-        <option value="PR">Paraná</option>
-        <option value="PE">Pernambuco</option>
-        <option value="PI">Piauí</option>
-        <option value="RJ">Rio de Janeiro</option>
-        <option value="RN">Rio Grande do Norte</option>
-        <option value="RS">Rio Grande do Sul</option>
-        <option value="RO">Rondônia</option>
-        <option value="RR">Roraima</option>
-        <option value="SC">Santa Catarina</option>
-        <option value="SP">São Paulo</option>
-        <option value="SE">Sergipe</option>
-        <option value="TO">Tocantins</option>
-      </select>
-      <select name="tipoPorto" id="tipoPorto">
-        <option value="" disabled selected>Selecione um tipo</option>
-        <option value="Marítimo">Marítimo</option>
-        <option value="Fluvial">Fluvial</option>
-      </select>
-
-      <button id="submitButton">Adicionar</button>
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Novo Porto</h5>
+        <button id="fecharAddForm" type="button" class="btn-close"></button>
+      </div>
+      <br>
+      <div class="form-group">
+        <p>Nome do Porto</p>
+        <input type="text" id="nomePorto" class="form-control" placeholder="Digite as informações">
+      </div>
+      <br>
+      <div class="form-group">
+        <p>Estado de localização</p>
+        <select name="estado" id="estado" class="form-control">
+          <option value="" disabled selected>Selecione um estado</option>
+          <option value="AC">Acre</option>
+          <option value="AL">Alagoas</option>
+          <option value="AP">Amapá</option>
+          <option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option>
+          <option value="CE">Ceará</option>
+          <option value="DF">Distrito Federal</option>
+          <option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option>
+          <option value="MA">Maranhão</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="PA">Pará</option>
+          <option value="PB">Paraíba</option>
+          <option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option>
+          <option value="PI">Piauí</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="RO">Rondônia</option>
+          <option value="RR">Roraima</option>
+          <option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option>
+          <option value="SE">Sergipe</option>
+          <option value="TO">Tocantins</option>
+        </select>
+      </div>
+      <br>
+      <div class="form-group">
+        <p>Tipo de Porto</p>
+        <select name="tipoPorto" id="tipoPorto" class="form-control">
+          <option value="" disabled selected>Selecione um tipo</option>
+          <option value="Marítimo">Marítimo</option>
+          <option value="Fluvial">Fluvial</option>
+        </select>
+      </div>
+      <br>
+      <button id="submitButton" class="btn btn-primary">Adicionar</button>
     </div>
+
     <div id="editForm" class="edit-form">
-      <h2>Editar Informações</h2>
-      <input type="text" id="editNomePorto" placeholder="Digite as informações">
-      <select name="editEstado" id="editEstado">
-        <option value="" disabled selected>Selecione um estado</option>
-        <option value="AC">Acre</option>
-        <option value="AL">Alagoas</option>
-        <option value="AP">Amapá</option>
-        <option value="AM">Amazonas</option>
-        <option value="BA">Bahia</option>
-        <option value="CE">Ceará</option>
-        <option value="DF">Distrito Federal</option>
-        <option value="ES">Espírito Santo</option>
-        <option value="GO">Goiás</option>
-        <option value="MA">Maranhão</option>
-        <option value="MT">Mato Grosso</option>
-        <option value="MS">Mato Grosso do Sul</option>
-        <option value="MG">Minas Gerais</option>
-        <option value="PA">Pará</option>
-        <option value="PB">Paraíba</option>
-        <option value="PR">Paraná</option>
-        <option value="PE">Pernambuco</option>
-        <option value="PI">Piauí</option>
-        <option value="RJ">Rio de Janeiro</option>
-        <option value="RN">Rio Grande do Norte</option>
-        <option value="RS">Rio Grande do Sul</option>
-        <option value="RO">Rondônia</option>
-        <option value="RR">Roraima</option>
-        <option value="SC">Santa Catarina</option>
-        <option value="SP">São Paulo</option>
-        <option value="SE">Sergipe</option>
-        <option value="TO">Tocantins</option>
-      </select>
-      <select name="editTipoPorto" id="editTipoPorto">
-        <option value="" disabled selected>Selecione um tipo</option>
-        <option value="Marítimo">Marítimo</option>
-        <option value="Fluvial">Fluvial</option>
-      </select>
-
-      <button id="editSubmitButton">Atualizar</button>
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Informações</h5>
+        <button id="fecharEditForm" type="button" class="btn-close"></button>
+      </div>
+      <br>
+        <div class="form-group">
+          <p>Nome do Porto</p>
+          <input type="text" id="editNomePorto" class="form-control" placeholder="Digite as informações">
+        </div>
+        <br>
+        <div class="form-group">
+          <p>Estado de localização</p>
+          <select name="editEstado" id="editEstado" class="form-control">
+            <option value="" disabled selected>Selecione um estado</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+          </select>
+        </div>
+        <br>
+        <div class="form-group">
+          <p>Tipo de Porto</p>
+          <select name="editTipoPorto" id="editTipoPorto" class="form-control">
+            <option value="" disabled selected>Selecione um tipo</option>
+            <option value="Marítimo">Marítimo</option>
+            <option value="Fluvial">Fluvial</option>
+          </select>
+        </div>
+      <br>
+        <button id="editSubmitButton" class="btn btn-primary">Atualizar</button>
     </div>
 
-    <h5 class="text-center my-3">Portos</h5>
-
+    <h4 class="text-center my-3">Portos</h4>
 
     <div id="tasks">
       <ul id="infoList"></ul>
