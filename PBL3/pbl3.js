@@ -12,7 +12,8 @@ const tipoPorto = document.getElementById("tipoPorto");
 const editTipoPorto = document.getElementById("editTipoPorto");
 const fecharAddForm = document.getElementById("fecharAddForm");
 const fecharEditForm = document.getElementById("fecharEditForm");
-const gerarRelatorioBtn = document.getElementById("gerarRelatorioBtn");
+const gerarRelatorioTxt = document.getElementById("gerarRelatorioTxt");
+const gerarRelatorioCsv = document.getElementById("gerarRelatorioCsv");
 
 
 const listaDePortos = [];
@@ -160,9 +161,9 @@ let editTask = (element) => {
   };
 };
 
-gerarRelatorioBtn.addEventListener('click', function() {
+gerarRelatorioTxt.addEventListener('click', function() {
   
-  function gerarRelatorio() {
+  function exportarRelatorioTXT() {
     let tabela = "    RELATÓRIO DE PORTOS ORGANIZADOS BRASILEIROS    \n\n"
     tabela += `   Nome do porto\tEstado\t\tTipo\t\n`;
        tabela += "---------------------------------------------------\n";
@@ -173,17 +174,44 @@ gerarRelatorioBtn.addEventListener('click', function() {
       tabela += "---------------------------------------------------\n";
     }
   
-    // Salva o relatório em um arquivo .txt
     const link = document.createElement("a");
-    link.href = "data:text/plain;charset=utf-8," + encodeURIComponent(tabela);
+    const txtData = new Blob([tabela], { type: "data:text/plain;charset=utf-8;" });
+    const txtURL = URL.createObjectURL(txtData);
+
+    link.href = txtURL;
     link.download = "relatorio.txt";
     link.style.display = "none";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  
-    alert('Relatório gerado com sucesso!');
+
+    alert("Relatório exportado como TXT com sucesso!");
   }
 
-  gerarRelatorio();
+  exportarRelatorioTXT();
+});
+
+gerarRelatorioCsv.addEventListener("click", function () {
+  function exportarRelatorioCSV() {
+    let csv = "Nome do porto;Estado;Tipo\n";
+
+    for (let i = 0; i < listaDePortos.length; i++) {
+      csv += `${listaDePortos[i].nome};${listaDePortos[i].estado};${listaDePortos[i].tipo}\n`;
+    }
+
+    const link = document.createElement("a");
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const csvURL = URL.createObjectURL(csvData);
+
+    link.href = csvURL;
+    link.download = "relatorio.csv";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    alert("Relatório exportado como CSV com sucesso!");
+  }
+
+  exportarRelatorioCSV();
 });

@@ -25,7 +25,9 @@ const campoDePesquisa = document.getElementById("campoDePesquisa");
 const botaoPesquisar = document.getElementById("botaoPesquisar");
 const resultado = document.getElementById("resultado");
 const bandeira = document.getElementById("bandeira");
-const gerarRelatorioBtn = document.getElementById("gerarRelatorioBtn");
+const gerarRelatorioTxt = document.getElementById("gerarRelatorioTxt");
+const gerarRelatorioCsv = document.getElementById("gerarRelatorioCsv");
+
 
 opcoes.addEventListener("change", () => {
   const valorSelecionado = opcoes.value;
@@ -145,9 +147,9 @@ function pesquisarTipo(tipo) {
 }
 
 
-gerarRelatorioBtn.addEventListener('click', function() {
+gerarRelatorioTxt.addEventListener('click', function() {
   
-  function gerarRelatorio() {
+  function exportarRelatorioTXT() {
     let tabela = "                    RELATÓRIO DE PORTOS ORGANIZADOS DELEGADOS                    \n\n"
     tabela += `   Nome do porto\t     Estado\t\t   Autoridade\t\t Tipo\t\n`;
     tabela += "---------------------------------------------------------------------------------\n";
@@ -157,18 +159,46 @@ gerarRelatorioBtn.addEventListener('click', function() {
       tabela += `${portos[i].nome.padEnd(20)}│\t${portos[i].estado.padEnd(18)}│\t${portos[i].autoridade.padEnd(20)}│\t${portos[i].tipo.padEnd(10)}│\n`;
       tabela += "---------------------------------------------------------------------------------\n";
     }
-  
-    // Salva o relatório em um arquivo .txt
+
     const link = document.createElement("a");
-    link.href = "data:text/plain;charset=utf-8," + encodeURIComponent(tabela);
+    const txtData = new Blob([tabela], { type: "data:text/plain;charset=utf-8;" });
+    const txtURL = URL.createObjectURL(txtData);
+
+    link.href = txtURL;
     link.download = "relatorio.txt";
     link.style.display = "none";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  
-    alert('Relatório gerado com sucesso!');
+
+    alert("Relatório exportado como TXT com sucesso!");
   }
 
-  gerarRelatorio();
+  exportarRelatorioTXT();
+});
+
+
+gerarRelatorioCsv.addEventListener("click", function () {
+  function exportarRelatorioCSV() {
+    let csv = "Nome do porto;Estado;Autoridade;Tipo;Região\n";
+
+    for (let i = 0; i < portos.length; i++) {
+      csv += `${portos[i].nome};${portos[i].estado};${portos[i].autoridade};${portos[i].tipo};${portos[i].regiao}\n`;
+    }
+
+    const link = document.createElement("a");
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const csvURL = URL.createObjectURL(csvData);
+
+    link.href = csvURL;
+    link.download = "relatorio.csv";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    alert("Relatório exportado como CSV com sucesso!");
+  }
+
+  exportarRelatorioCSV();
 });
