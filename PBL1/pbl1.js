@@ -154,3 +154,33 @@ const portosPorEstado = [
     "https://www.infoescola.com/wp-content/uploads/2021/02/bandeira-sergipe-600x420.png",
     "https://www.infoescola.com/wp-content/uploads/2021/02/bandeira-tocantins-600x420.png"
   ];
+
+const gerarRelatorioBtn = document.getElementById("gerarRelatorioBtn");
+
+gerarRelatorioBtn.addEventListener('click', function() {
+  
+    function gerarRelatorio() {
+      let tabela = " QUANTIDADE DE PORTOS ORGANZIZADOS POR ESTADO BRASILEIRO\n\n"
+      tabela += `      Estado\t\tQuantidade\t Porcentagem\t\n`;
+         tabela += "---------------------------------------------------------\n";
+  
+    
+      for (let i = 1; i < portosPorEstado.length; i++) {
+        tabela += `${getNomeEstado(i).padEnd(20)}│\t   ${portosPorEstado[i].toString().padEnd(9)}│\t   ${(((portosPorEstado[i] / totalPortos) * 100).toFixed(2))}%        │\n`;
+        tabela += "---------------------------------------------------------\n";
+      }
+    
+      // Salva o relatório em um arquivo .txt
+      const link = document.createElement("a");
+      link.href = "data:text/plain;charset=utf-8," + encodeURIComponent(tabela);
+      link.download = "relatorio.txt";
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    
+      alert('Relatório gerado com sucesso!');
+    }
+  
+    gerarRelatorio();
+  });
