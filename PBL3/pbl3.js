@@ -12,6 +12,8 @@ const tipoPorto = document.getElementById("tipoPorto");
 const editTipoPorto = document.getElementById("editTipoPorto");
 const fecharAddForm = document.getElementById("fecharAddForm");
 const fecharEditForm = document.getElementById("fecharEditForm");
+const gerarRelatorioBtn = document.getElementById("gerarRelatorioBtn");
+
 
 const listaDePortos = [];
 
@@ -157,3 +159,31 @@ let editTask = (element) => {
     editForm.style.display = "none";
   };
 };
+
+gerarRelatorioBtn.addEventListener('click', function() {
+  
+  function gerarRelatorio() {
+    let tabela = "    RELATÓRIO DE PORTOS ORGANIZADOS BRASILEIROS    \n\n"
+    tabela += `   Nome do porto\tEstado\t\tTipo\t\n`;
+       tabela += "---------------------------------------------------\n";
+
+  
+    for (let i = 0; i < listaDePortos.length; i++) {
+      tabela += `${listaDePortos[i].nome.padEnd(20)}│\t${listaDePortos[i].estado.padEnd(10)}│\t${listaDePortos[i].tipo.padEnd(10)}│\n`;
+      tabela += "---------------------------------------------------\n";
+    }
+  
+    // Salva o relatório em um arquivo .txt
+    const link = document.createElement("a");
+    link.href = "data:text/plain;charset=utf-8," + encodeURIComponent(tabela);
+    link.download = "relatorio.txt";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  
+    alert('Relatório gerado com sucesso!');
+  }
+
+  gerarRelatorio();
+});

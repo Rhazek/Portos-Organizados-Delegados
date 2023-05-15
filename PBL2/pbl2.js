@@ -25,6 +25,7 @@ const campoDePesquisa = document.getElementById("campoDePesquisa");
 const botaoPesquisar = document.getElementById("botaoPesquisar");
 const resultado = document.getElementById("resultado");
 const bandeira = document.getElementById("bandeira");
+const gerarRelatorioBtn = document.getElementById("gerarRelatorioBtn");
 
 opcoes.addEventListener("change", () => {
   const valorSelecionado = opcoes.value;
@@ -142,3 +143,32 @@ function pesquisarTipo(tipo) {
 
   return titulo + resultado;
 }
+
+
+gerarRelatorioBtn.addEventListener('click', function() {
+  
+  function gerarRelatorio() {
+    let tabela = "                    RELATÓRIO DE PORTOS ORGANIZADOS DELEGADOS                    \n\n"
+    tabela += `   Nome do porto\t     Estado\t\t   Autoridade\t\t Tipo\t\n`;
+    tabela += "---------------------------------------------------------------------------------\n";
+
+  
+    for (let i = 0; i < portos.length; i++) {
+      tabela += `${portos[i].nome.padEnd(20)}│\t${portos[i].estado.padEnd(18)}│\t${portos[i].autoridade.padEnd(20)}│\t${portos[i].tipo.padEnd(10)}│\n`;
+      tabela += "---------------------------------------------------------------------------------\n";
+    }
+  
+    // Salva o relatório em um arquivo .txt
+    const link = document.createElement("a");
+    link.href = "data:text/plain;charset=utf-8," + encodeURIComponent(tabela);
+    link.download = "relatorio.txt";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  
+    alert('Relatório gerado com sucesso!');
+  }
+
+  gerarRelatorio();
+});
