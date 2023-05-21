@@ -148,8 +148,6 @@ function pesquisarTipo(tipo) {
 
 
 gerarRelatorioTxt.addEventListener('click', function() {
-  
-  function exportarRelatorioTXT() {
     let tabela = "                    RELATÓRIO DE PORTOS ORGANIZADOS DELEGADOS                    \n\n"
     tabela += `   Nome do porto\t     Estado\t\t   Autoridade\t\t Tipo\t\n`;
     tabela += "---------------------------------------------------------------------------------\n";
@@ -161,25 +159,15 @@ gerarRelatorioTxt.addEventListener('click', function() {
     }
 
     const link = document.createElement("a");
-    const txtData = new Blob([tabela], { type: "data:text/plain;charset=utf-8;" });
-    const txtURL = URL.createObjectURL(txtData);
-
-    link.href = txtURL;
+    link.href = URL.createObjectURL(new Blob([tabela], { type: "data:text/plain;charset=utf-8;" }));
     link.download = "relatorio.txt";
-    link.style.display = "none";
-    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
 
     alert("Relatório exportado como TXT com sucesso!");
-  }
-
-  exportarRelatorioTXT();
 });
 
 
 gerarRelatorioCsv.addEventListener("click", function () {
-  function exportarRelatorioCSV() {
     let csv = "Nome do porto;Estado;Autoridade;Tipo;Região\n";
 
     for (let i = 0; i < portos.length; i++) {
@@ -187,18 +175,9 @@ gerarRelatorioCsv.addEventListener("click", function () {
     }
 
     const link = document.createElement("a");
-    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const csvURL = URL.createObjectURL(csvData);
-
-    link.href = csvURL;
+    link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
     link.download = "relatorio.csv";
-    link.style.display = "none";
-    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
 
     alert("Relatório exportado como CSV com sucesso!");
-  }
-
-  exportarRelatorioCSV();
 });
